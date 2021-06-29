@@ -8,11 +8,10 @@ const int PORT = 4000;
 
 int main(int argc, char *argv[])
 {
-    udp_listener::MyServerClass myServerObj;
+    udp_listener::MyServerClass myServerObj(IP, PORT);
 
     try
     {
-        myServerObj.initServer(IP, PORT);
         myServerObj.receiveFrames();
     }
     catch (int e)

@@ -23,7 +23,6 @@ namespace udp_listener
 
     private:
         uint32_t _previous_log_mileage;
-        std::span<uint8_t> _incommingBuffer;
         std::span<uint8_t> _singleFrameBuffer;
     };
 }

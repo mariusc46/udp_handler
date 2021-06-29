@@ -16,7 +16,7 @@ udp_listener::MyListener::MyListener(): _previous_log_mileage(NO_MESSAGE_LOGGED)
 int64_t udp_listener::MyListener::getUnixTimestamp() noexcept
 {
     int64_t microsecondsUTC =
-    std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     return microsecondsUTC;
 }
 
@@ -43,14 +43,14 @@ bool udp_listener::MyListener::validateCrc() noexcept
 
 uint32_t udp_listener::MyListener::getMileage() noexcept
 {
-    uint32_t mileage = (uint32_t) ((_singleFrameBuffer[3] << 16U) | (_singleFrameBuffer[4] << 8U) | _singleFrameBuffer[5]);
+    uint32_t mileage = (uint32_t(_singleFrameBuffer[3] << 16U) | (_singleFrameBuffer[4] << 8U) | _singleFrameBuffer[5]);
     // std::cout << " mileage " << std::hex << unsigned(mileage);
     return mileage;
 }
 
 uint32_t udp_listener::MyListener::getSpeed() noexcept
 {
-    uint32_t speed = (uint32_t) ((_singleFrameBuffer[6] << 16U) | (_singleFrameBuffer[7] << 8U) | _singleFrameBuffer[8]);
+    uint32_t speed = (uint32_t(_singleFrameBuffer[6] << 16U) | (_singleFrameBuffer[7] << 8U) | _singleFrameBuffer[8]);
     // std::cout << " speed " << std::hex << unsigned(speed);
     return speed;
 }
@@ -73,11 +73,9 @@ void udp_listener::MyListener::handleIncomingBuffer(const std::span<uint8_t> buf
     const uint16_t DEFINED_NUMBER_OF_BYTES = 10U;
     const uint16_t ONE_CAN_MESSAGE_SIZE = 10U;
 
-    _incommingBuffer = buffer;
+    std::cout << "Number of received bytes: " << buffer.size() << " | ";
 
-    std::cout << "Number of received bytes: " << _incommingBuffer.size() << " | ";
-
-    if (_incommingBuffer.size() == ONE_CAN_MESSAGE_SIZE)
+    if (buffer.size() == ONE_CAN_MESSAGE_SIZE)
     {
         _singleFrameBuffer = buffer;
         handleOneCanFrame();
@@ -85,7 +83,7 @@ void udp_listener::MyListener::handleIncomingBuffer(const std::span<uint8_t> buf
     else // split UDP frame in smaller CANr frames
     {
         // loop through received bytes and copy 10 entries in a temporary buffer
-        for (uint16_t bytes_index = 0U; bytes_index < _incommingBuffer.size(); bytes_index += DEFINED_NUMBER_OF_BYTES)
+        for (uint16_t bytes_index = 0U; bytes_index < buffer.size(); bytes_index += DEFINED_NUMBER_OF_BYTES)
         {
             _singleFrameBuffer = std::span<uint8_t>(buffer.data() + bytes_index, 10U);
             handleOneCanFrame();
@@ -103,10 +101,10 @@ void udp_listener::MyListener::handleOneCanFrame()
         if (validateCrc() == VALID_CRC)
         {
             uint32_t mileage = getMileage();
-            uint32_t speed_ms = getSpeed();
 
             if (isTimeToLog(mileage))
             {
+                uint32_t speed_ms = getSpeed();
                 myLogObj.LogMessage(getUnixTimestamp(), mileage, convertSpeedToKmh(speed_ms));
             }
             else
