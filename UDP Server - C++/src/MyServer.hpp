@@ -8,7 +8,6 @@ namespace udp_listener
     {
     public:
         MyServerClass(const std::string ip, const int port);
-        void initServer(const std::string ip, const int port);
         void receiveFrames();
 
         udp_listener::MyListener myListenObj;
