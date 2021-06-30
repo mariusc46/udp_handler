@@ -42,13 +42,13 @@ bool udp_listener::MyListener::validateCrc() noexcept
 
 uint32_t udp_listener::MyListener::getMileage() noexcept
 {
-    uint32_t mileage = (uint32_t(_singleFrameBuffer[3] << 16U) | uint32_t(_singleFrameBuffer[4] << 8U) | uint32_t(_singleFrameBuffer[5]));
+    uint32_t mileage = (uint32_t(_singleFrameBuffer[3]) << 16U) | (uint32_t(_singleFrameBuffer[4]) << 8U) | uint32_t(_singleFrameBuffer[5]);
     return mileage;
 }
 
 uint32_t udp_listener::MyListener::getSpeed() noexcept
 {
-    uint32_t speed = (uint32_t(_singleFrameBuffer[6] << 16U) | uint32_t(_singleFrameBuffer[7] << 8U) | uint32_t(_singleFrameBuffer[8]));
+    uint32_t speed = (uint32_t(_singleFrameBuffer[6]) << 16U) | (uint32_t(_singleFrameBuffer[7]) << 8U) | uint32_t(_singleFrameBuffer[8]);
     return speed;
 }
 
