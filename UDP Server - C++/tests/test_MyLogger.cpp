@@ -9,11 +9,11 @@ class MyLoggerTest: public ::testing::Test
     udp_listener::MyLogger logger;
 };
 
-TEST_F(MyLoggerTest, log_error)
+TEST_F(MyLoggerTest, LogErrorTest)
 {
-    testing::internal::CaptureStdout();
+    testing::internal::CaptureStderr();
     logger.LogError();
-    std::string output = testing::internal::GetCapturedStdout();
+    std::string output = testing::internal::GetCapturedStderr();
     EXPECT_NE(output.find("CRC"), std::string::npos);
 }
 
