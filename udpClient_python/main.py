@@ -9,6 +9,9 @@ udp_gen = udp_class.UdpGenerator()
 udp_gen.init_socket()
 
 def simple_test_seq():
+    udp_gen.mileage = 0
+    udp_gen.speed = 0
+
     #send 15 valid frames
     for numberOfFrames in range(0,15):
         #generate a new UDP frame
@@ -50,16 +53,13 @@ def simple_test_seq():
     udp_gen.mileage = 0
     print("Simple seq done")
 
-udp_gen.mileage = 0
-udp_gen.speed = 0
-
 #udp_single_canframe_valid = udp_gen.generate_udp_singleframe(VALID_ID)
 #send frame to UDP port
 #udp_gen.send_one_frame(udp_single_canframe_valid)
 
+#udp_multi_canframe = udp_gen.generate_udp_multiframe(NUMBER_OF_CANFRAMES, VALID_ID)
+#udp_gen.send_one_frame(udp_multi_canframe)
+
+#udp_gen.send_cyclic_valid_frames()
+
 simple_test_seq()
-
-udp_multi_canframe = udp_gen.generate_udp_multiframe(NUMBER_OF_CANFRAMES, VALID_ID)
-udp_gen.send_one_frame(udp_multi_canframe)
-
-udp_gen.send_cyclic_valid_frames()

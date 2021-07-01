@@ -70,8 +70,6 @@ void udp_listener::MyListener::handleIncomingBuffer(const std::span<uint8_t> buf
     constexpr uint16_t DEFINED_NUMBER_OF_BYTES = 10U;
     constexpr uint16_t ONE_CAN_MESSAGE_SIZE = 10U;
 
-    std::cout << "NoOfRcvBytes: " << buffer.size() << " | ";
-
     if (buffer.size() == ONE_CAN_MESSAGE_SIZE)
     {
         _singleFrameBuffer = buffer;
@@ -103,18 +101,10 @@ void udp_listener::MyListener::handleOneCanFrame()
                 uint32_t speed_ms = getSpeed();
                 myLogObj.LogMessage(getUnixTimestamp(), mileage, convertSpeedToKmh(speed_ms));
             }
-            else
-            {
-                std::cout << "Mileage value skiped for logging \n";
-            }
         }
         else
         {
             myLogObj.LogError();
         }
-    }
-    else
-    {
-        std::cout << "Message ID not recognised, frame discarded \n";
     }
 }

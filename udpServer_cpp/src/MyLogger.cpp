@@ -13,7 +13,6 @@ udp_listener::MyLogger::MyLogger()
 void udp_listener::MyLogger::LogMessage(int64_t timestamp, uint32_t mileage, float speed)
 {
     _myfile << timestamp << ", " << mileage << ", " << std::setprecision(1) << std::fixed << speed << std::endl;
-    std::cout << "New log entry added!\n";
 }
 
 void udp_listener::MyLogger::LogError()
