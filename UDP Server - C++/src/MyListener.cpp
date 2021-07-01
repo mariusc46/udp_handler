@@ -70,7 +70,7 @@ void udp_listener::MyListener::handleIncomingBuffer(const std::span<uint8_t> buf
     constexpr uint16_t DEFINED_NUMBER_OF_BYTES = 10U;
     constexpr uint16_t ONE_CAN_MESSAGE_SIZE = 10U;
 
-    std::cout << "Number of received bytes: " << buffer.size() << " | ";
+    std::cout << "NoOfRcvBytes: " << buffer.size() << " | ";
 
     if (buffer.size() == ONE_CAN_MESSAGE_SIZE)
     {
@@ -105,7 +105,7 @@ void udp_listener::MyListener::handleOneCanFrame()
             }
             else
             {
-                std::cout << "Mileage value skiped for logging .. \n";
+                std::cout << "Mileage value skiped for logging \n";
             }
         }
         else

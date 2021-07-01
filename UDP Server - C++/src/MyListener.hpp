@@ -13,16 +13,16 @@ namespace udp_listener
 
     protected:
         static float convertSpeedToKmh(const float speed_ms) noexcept;
+        bool isTimeToLog(const uint32_t mileage) noexcept;
+        uint32_t _previous_log_mileage;
+
+    private:
         uint16_t getMessageId() noexcept;
         uint32_t getMileage() noexcept;
         uint32_t getSpeed() noexcept;
         static int64_t getUnixTimestamp() noexcept;
         void handleOneCanFrame();
-        bool isTimeToLog(const uint32_t mileage) noexcept;
         bool validateCrc() noexcept;
-
-    private:
-        uint32_t _previous_log_mileage;
         std::span<uint8_t> _singleFrameBuffer;
     };
 }

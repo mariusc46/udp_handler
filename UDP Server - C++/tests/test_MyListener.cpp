@@ -1,22 +1,34 @@
+#include <array>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include <array>
 
 #include "../src/MyListener.hpp"
 
-class MyListenerTest: public ::testing::Test
+struct IsTimeToLogStruct
 {
-    protected:
-    udp_listener::MyListener listener;
+    float previousLogMileage;
+    float currentLogMileage;
+    bool returnValue;
 };
 
-TEST_F(MyListenerTest, LogErrorTest)
+class MyListenerTest: public udp_listener::MyListener, public ::testing::TestWithParam<IsTimeToLogStruct>
 {
-    std::array<uint8_t, 10> buffer = {0x02, 0x1a, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xe5};
+};
 
-    listener.handleIncomingBuffer(buffer);
-    EXPECT_EQ(1, 1);
+TEST_P(MyListenerTest, isTimeToLog)
+{
+    IsTimeToLogStruct testParams = GetParam();
+    _previous_log_mileage = testParams.previousLogMileage;
+    EXPECT_EQ(testParams.returnValue, isTimeToLog(testParams.currentLogMileage));
 }
+
+TEST_F(MyListenerTest, convertSpeedToKmh)
+{
+    float computedSpeedInKmh = convertSpeedToKmh(10);
+    EXPECT_EQ(computedSpeedInKmh, 36);
+}
+
+INSTANTIATE_TEST_CASE_P(MyListenerTest, MyListenerTest, ::testing::Values(IsTimeToLogStruct(0, 9, false), (0, 10, true), (0, 11, false)));
 
 int main(int argc, char* argv[])
 {

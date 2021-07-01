@@ -3,14 +3,10 @@
 
 #include "../src/MyLogger.hpp"
 
-class MyLoggerTest: public ::testing::Test
+TEST(MyLogger, LogError)
 {
-    protected:
     udp_listener::MyLogger logger;
-};
 
-TEST_F(MyLoggerTest, LogErrorTest)
-{
     testing::internal::CaptureStderr();
     logger.LogError();
     std::string output = testing::internal::GetCapturedStderr();
