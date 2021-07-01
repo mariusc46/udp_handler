@@ -12,7 +12,7 @@ class MyListenerTest: public ::testing::Test
 
 TEST_F(MyListenerTest, LogErrorTest)
 {
-    std::array<uint8_t, 100> buffer;
+    std::array<uint8_t, 10> buffer = {0x02, 0x1a, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xe5};
 
     listener.handleIncomingBuffer(buffer);
     EXPECT_EQ(1, 1);

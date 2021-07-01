@@ -77,7 +77,7 @@ void udp_listener::MyListener::handleIncomingBuffer(const std::span<uint8_t> buf
         _singleFrameBuffer = buffer;
         handleOneCanFrame();
     }
-    else // split UDP frame in smaller CANr frames
+    else // split UDP frame in smaller CAN frames
     {
         for (uint16_t bytes_index = 0U; bytes_index < buffer.size(); bytes_index += DEFINED_NUMBER_OF_BYTES)
         {
