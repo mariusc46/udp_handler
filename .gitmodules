@@ -1,3 +1,0 @@
-[submodule "UDP"]
-	path = UDP
-	url = https://github.com/google/googletest
