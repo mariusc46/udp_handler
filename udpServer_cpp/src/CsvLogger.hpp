@@ -12,6 +12,6 @@ namespace udp_listener
         void LogError() override;
 
     private:
-        std::ofstream _myfile;
+        std::ofstream m_myfile;
     };
 }

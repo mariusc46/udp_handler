@@ -10,24 +10,24 @@ struct IsTimeToLogStruct
     bool returnValue;
 };
 
-class MyListenerTest: public udp_listener::DscListener, public ::testing::TestWithParam<IsTimeToLogStruct>
+class DscListenerTest: public udp_listener::DscListener, public ::testing::TestWithParam<IsTimeToLogStruct>
 {
 };
 
-TEST_P(MyListenerTest, isTimeToLog)
+TEST_P(DscListenerTest, isTimeToLog)
 {
     IsTimeToLogStruct testParams = GetParam();
     _previous_log_mileage = testParams.previousLogMileage;
     EXPECT_EQ(testParams.returnValue, isTimeToLog(testParams.currentLogMileage));
 }
 
-TEST_F(MyListenerTest, convertSpeedToKmh)
+TEST_F(DscListenerTest, convertSpeedToKmh)
 {
     float computedSpeedInKmh = convertSpeedToKmh(10);
     EXPECT_EQ(computedSpeedInKmh, 36);
 }
 
-INSTANTIATE_TEST_CASE_P(MyListenerTest, MyListenerTest, ::testing::Values(IsTimeToLogStruct(0, 9, false), (0, 10, true), (0, 11, false)));
+INSTANTIATE_TEST_CASE_P(DscListenerTest, MyListenerTest, ::testing::Values(IsTimeToLogStruct(0, 9, false), (0, 10, true), (0, 11, false)));
 
 int main(int argc, char* argv[])
 {

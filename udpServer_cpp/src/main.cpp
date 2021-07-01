@@ -1,11 +1,11 @@
-#include <exception>
 #include <fstream>
 #include <iostream>
 #include <memory>
+#include <exception>
 
 #include "CsvLogger.hpp"
 #include "DscListener.hpp"
-#include "MyServer.hpp"
+#include "UdpServer.hpp"
 
 const std::string IP = "127.0.0.1";
 constexpr uint16_t PORT = 4000;
@@ -19,8 +19,8 @@ int main(int argc, char* argv[])
         auto myLogger = std::make_unique<CsvLogger>();
         auto myListener = std::make_unique<DscListener>(std::move(myLogger));
 
-        MyServerClass myServerObj(IP, PORT, std::move(myListener));
-        myServerObj.receiveFrames();
+        UdpServerClass udpServerObj(IP, PORT, std::move(myListener));
+        udpServerObj.receiveFrames();
     }
     catch (const std::exception& e)
     {

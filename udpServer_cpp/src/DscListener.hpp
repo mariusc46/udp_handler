@@ -16,7 +16,7 @@ namespace udp_listener
     protected:
         static float convertSpeedToKmh(const float speed_ms) noexcept;
         bool isTimeToLog(const uint32_t mileage) noexcept;
-        uint32_t _previous_log_mileage;
+        uint32_t m_previous_log_mileage;
 
     private:
         uint16_t getMessageId() noexcept;
@@ -26,7 +26,7 @@ namespace udp_listener
         void handleOneCanFrame();
         bool validateCrc() noexcept;
 
-        std::span<uint8_t> _singleFrameBuffer;
-        std::unique_ptr<Logger> _logger;
+        std::span<uint8_t> m_singleFrameBuffer;
+        std::unique_ptr<Logger> m_logger;
     };
 }

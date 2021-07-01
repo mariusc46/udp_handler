@@ -4,18 +4,21 @@
 
 #include "CsvLogger.hpp"
 
-udp_listener::CsvLogger::CsvLogger()
+namespace udp_listener 
 {
-    std::string my_file_path = "../output/log.csv";
-    _myfile.open(my_file_path, std::fstream::trunc);
-}
+    CsvLogger::CsvLogger()
+    {
+        std::string my_file_path = "../output/log.csv";
+        m_myfile.open(my_file_path, std::fstream::trunc);
+    }
 
-void udp_listener::CsvLogger::LogMessage(int64_t timestamp, uint32_t mileage, float speed)
-{
-    _myfile << timestamp << ", " << mileage << ", " << std::setprecision(1) << std::fixed << speed << std::endl;
-}
+    void CsvLogger::LogMessage(int64_t timestamp, uint32_t mileage, float speed)
+    {
+        m_myfile << timestamp << ", " << mileage << ", " << std::setprecision(1) << std::fixed << speed << std::endl;
+    }
 
-void udp_listener::CsvLogger::LogError()
-{
-    std::cerr << "CRC error, frame discarded \n";
+    void CsvLogger::LogError()
+    {
+        std::cerr << "CRC error, frame discarded \n";
+    }
 }
