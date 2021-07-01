@@ -3,7 +3,7 @@
 
 #include "../src/CsvLogger.hpp"
 
-TEST(DscLoggerTest, LogError)
+TEST(CsvLoggerTest, LogError)
 {
     udp_listener::CsvLogger logger;
 

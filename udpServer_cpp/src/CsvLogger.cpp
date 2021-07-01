@@ -8,7 +8,7 @@ namespace udp_listener
 {
     CsvLogger::CsvLogger()
     {
-        std::string my_file_path = "../output/log.csv";
+        std::string my_file_path = "../../output/log.csv";
         m_myfile.open(my_file_path, std::fstream::trunc);
     }
 

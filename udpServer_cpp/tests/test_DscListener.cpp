@@ -2,32 +2,22 @@
 #include <gtest/gtest.h>
 
 #include "../src/DscListener.hpp"
+#include "mock.hpp"
 
-struct IsTimeToLogStruct
+TEST(DscListenerTest, isTimeToLog)
 {
-    float previousLogMileage;
-    float currentLogMileage;
-    bool returnValue;
-};
-
-class DscListenerTest: public udp_listener::DscListener, public ::testing::TestWithParam<IsTimeToLogStruct>
-{
-};
-
-TEST_P(DscListenerTest, isTimeToLog)
-{
-    IsTimeToLogStruct testParams = GetParam();
-    _previous_log_mileage = testParams.previousLogMileage;
-    EXPECT_EQ(testParams.returnValue, isTimeToLog(testParams.currentLogMileage));
+    auto myDscListener = udp_listener::DscListener(std::make_unique<LoggerMock>());  
+    myDscListener.m_previous_log_mileage = 0;
+    EXPECT_EQ(true, myDscListener.isTimeToLog(10));
 }
 
-TEST_F(DscListenerTest, convertSpeedToKmh)
+TEST(DscListenerTest, convertSpeedToKmh)
 {
-    float computedSpeedInKmh = convertSpeedToKmh(10);
+    auto myDscListener = udp_listener::DscListener(std::make_unique<LoggerMock>());  
+
+    float computedSpeedInKmh = myDscListener.convertSpeedToKmh(10);
     EXPECT_EQ(computedSpeedInKmh, 36);
 }
-
-INSTANTIATE_TEST_CASE_P(DscListenerTest, MyListenerTest, ::testing::Values(IsTimeToLogStruct(0, 9, false), (0, 10, true), (0, 11, false)));
 
 int main(int argc, char* argv[])
 {
