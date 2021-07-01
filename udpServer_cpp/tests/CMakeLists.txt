@@ -17,7 +17,7 @@ add_executable(tests_DscListener test_DscListener.cpp mock.hpp ../src/DscListene
 target_link_libraries(tests_CsvLogger PRIVATE gtest gmock)
 target_link_libraries(tests_DscListener PRIVATE gtest gmock)
 
-target_compile_definitions(tests_DscListener PRIVATE foo=1)
+target_compile_definitions(tests_DscListener PRIVATE UNIT_TEST_ENABLE=1)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

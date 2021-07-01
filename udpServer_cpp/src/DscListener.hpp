@@ -4,7 +4,7 @@
 #include <memory>
 #include <span>
 
-#if defined foo
+#if defined UNIT_TEST_ENABLE
     #define Private public
 #else
     #define Private private
