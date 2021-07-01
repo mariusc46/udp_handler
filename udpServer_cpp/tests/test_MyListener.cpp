@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "../src/MyListener.hpp"
+#include "../src/DscListener.hpp"
 
 struct IsTimeToLogStruct
 {
@@ -10,7 +10,7 @@ struct IsTimeToLogStruct
     bool returnValue;
 };
 
-class MyListenerTest: public udp_listener::MyListener, public ::testing::TestWithParam<IsTimeToLogStruct>
+class MyListenerTest: public udp_listener::DscListener, public ::testing::TestWithParam<IsTimeToLogStruct>
 {
 };
 

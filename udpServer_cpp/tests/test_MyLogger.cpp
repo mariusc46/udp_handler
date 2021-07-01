@@ -1,11 +1,11 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "../src/MyLogger.hpp"
+#include "../src/CsvLogger.hpp"
 
 TEST(MyLogger, LogError)
 {
-    udp_listener::MyLogger logger;
+    udp_listener::CsvLogger logger;
 
     testing::internal::CaptureStderr();
     logger.LogError();

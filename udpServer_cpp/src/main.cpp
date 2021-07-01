@@ -1,7 +1,7 @@
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <memory>
-#include <exception>
 
 #include "CsvLogger.hpp"
 #include "DscListener.hpp"
@@ -17,10 +17,10 @@ int main(int argc, char* argv[])
         using namespace udp_listener;
 
         auto myLogger = std::make_unique<CsvLogger>();
-        // auto myListener = std::make_unique<DscListener>(std::move(myLogger));
+        auto myListener = std::make_unique<DscListener>(std::move(myLogger));
 
-        // MyServerClass myServerObj(IP, PORT, std::move(myListener));
-        // myServerObj.receiveFrames();
+        MyServerClass myServerObj(IP, PORT, std::move(myListener));
+        myServerObj.receiveFrames();
     }
     catch (const std::exception& e)
     {
