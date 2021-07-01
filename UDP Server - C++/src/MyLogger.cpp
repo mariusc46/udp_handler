@@ -18,5 +18,5 @@ void udp_listener::MyLogger::LogMessage(int64_t timestamp, uint32_t mileage, flo
 
 void udp_listener::MyLogger::LogError()
 {
-    std::cerr << " CRC error, frame discarded \n";
+    std::cerr << "CRC error, frame discarded \n";
 }

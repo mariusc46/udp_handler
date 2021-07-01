@@ -57,11 +57,9 @@ udp_gen.speed = 0
 #send frame to UDP port
 #udp_gen.send_one_frame(udp_single_canframe_valid)
 
-
 simple_test_seq()
 
 udp_multi_canframe = udp_gen.generate_udp_multiframe(NUMBER_OF_CANFRAMES, VALID_ID)
 udp_gen.send_one_frame(udp_multi_canframe)
-
 
 udp_gen.send_cyclic_valid_frames()
