@@ -1,14 +1,9 @@
 #pragma once
 #include "Listener.hpp"
+#include "setup.hpp"
 
 #include <memory>
 #include <span>
-
-#if defined UNIT_TEST_ENABLE
-    #define Private public
-#else
-    #define Private private
-#endif
 
 namespace udp_listener
 {
