@@ -15,13 +15,6 @@ namespace udp_listener
     {
     }
 
-    int64_t DscListener::getUnixTimestamp() noexcept
-    {
-        int64_t microsecondsUTC =
-            std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-        return microsecondsUTC;
-    }
-
     float DscListener::convertSpeedToKmh(const float speed_ms) noexcept
     {
         constexpr float msToKmhMultiplier = 3.6f;
@@ -101,7 +94,7 @@ namespace udp_listener
                 if (isTimeToLog(mileage))
                 {
                     uint32_t speed_ms = getSpeed();
-                    m_logger->LogMessage(getUnixTimestamp(), mileage, convertSpeedToKmh(speed_ms));
+                    m_logger->LogMessage(mileage, convertSpeedToKmh(speed_ms));
                 }
             }
             else

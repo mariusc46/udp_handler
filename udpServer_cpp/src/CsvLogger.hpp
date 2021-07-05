@@ -8,7 +8,8 @@ namespace udp_listener
     {
     public:
         CsvLogger();
-        void LogMessage(int64_t timestamp, uint32_t mileage, float speed) override;
+        int64_t getUnixTimestamp() noexcept;
+        void LogMessage(uint32_t mileage, float speed) override;
         void LogError() override;
 
     private:

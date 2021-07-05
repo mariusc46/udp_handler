@@ -21,7 +21,6 @@ namespace udp_listener
         uint16_t getMessageId() noexcept;
         uint32_t getMileage() noexcept;
         uint32_t getSpeed() noexcept;
-        static int64_t getUnixTimestamp() noexcept;
         void handleOneCanFrame();
         bool validateCrc() noexcept;
 

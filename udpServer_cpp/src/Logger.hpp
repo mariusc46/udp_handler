@@ -7,7 +7,7 @@ namespace udp_listener
     {
     public:
         virtual ~Logger() noexcept = default;
-        virtual void LogMessage(int64_t timestamp, uint32_t mileage, float speed) = 0;
+        virtual void LogMessage(uint32_t mileage, float speed) = 0;
         virtual void LogError() = 0;
     };
 }
