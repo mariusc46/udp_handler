@@ -39,10 +39,8 @@ class UdpGenerator:
     def generate_udp_multiframe(self, numberOfCanFrames, can_id):
         udp_multiframe = bytearray()
         for index in range(0, numberOfCanFrames):
-
             can_frame = self.generate_can_message(mileage = self.mileage, speed = self.speed, id = can_id)
             udp_multiframe += can_frame
-            self.speed +=1
             self.mileage +=1
         return udp_multiframe
             

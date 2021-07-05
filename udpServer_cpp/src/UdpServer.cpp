@@ -6,7 +6,7 @@ namespace udp_listener
 {
     void UdpServerClass::receiveFrames()
     {
-        std::array<uint8_t, 100> buffer;
+        std::array<uint8_t, 500> buffer;
 
         while (1)
         {
