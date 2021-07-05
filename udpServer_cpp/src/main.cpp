@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
     try
     {
         auto myLogger = std::make_unique<logger::CsvLogger>();
-        auto myListener = std::make_unique<interpreter::DscInterpreter>(std::move(myLogger));
+        auto myInterpreter = std::make_unique<interpreter::DscInterpreter>(std::move(myLogger));
 
-        udp_listener::UdpListener udpListenObj(IP, PORT, std::move(myListener));
+        udp_listener::UdpListener udpListenObj(IP, PORT, std::move(myInterpreter));
         udpListenObj.receiveFrames();
     }
     catch (const std::exception& e)
