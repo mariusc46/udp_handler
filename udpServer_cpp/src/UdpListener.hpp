@@ -8,10 +8,10 @@ namespace udp_listener
 {
     class Listener;
 
-    class UdpServerClass
+    class UdpListener
     {
     public:
-        UdpServerClass(const std::string& ip, const uint16_t port, std::unique_ptr<interpreter::Listener> listener);
+        UdpListener(const std::string& ip, const uint16_t port, std::unique_ptr<interpreter::Listener> listener);
         void receiveFrames();
 
     private:
