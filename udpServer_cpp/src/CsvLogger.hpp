@@ -2,13 +2,14 @@
 #include "Logger.hpp"
 #include <fstream>
 
-namespace udp_listener
+namespace logger
 {
-    class CsvLogger : public Logger
+    class CsvLogger: public Logger
     {
     public:
         CsvLogger();
-        void LogMessage(int64_t timestamp, uint32_t mileage, float speed) override;
+        static int64_t getUnixTimestamp() noexcept;
+        void LogMessage(uint32_t mileage, float speed) override;
         void LogError() override;
 
     private:

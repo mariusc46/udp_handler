@@ -12,12 +12,12 @@ include_directories(include)
 include_directories(tests/googletest/include)
 
 add_executable(tests_CsvLogger test_CsvLogger.cpp ../src/CsvLogger.cpp ../src/CsvLogger.hpp)
-add_executable(tests_DscListener test_DscListener.cpp mock.hpp ../src/DscListener.cpp ../src/DscListener.hpp ../src/CsvLogger.cpp ../src/CsvLogger.hpp ../libs/CRC.cpp ../libs/CRC.h ../src/setup.hpp)
+add_executable(tests_DscInterpreter tests_DscInterpreter.cpp mock.hpp ../src/DscInterpreter.cpp ../src/DscInterpreter.hpp ../src/CsvLogger.cpp ../src/CsvLogger.hpp ../libs/CRC.cpp ../libs/CRC.h ../src/setup.hpp)
 
 target_link_libraries(tests_CsvLogger PRIVATE gtest gmock)
-target_link_libraries(tests_DscListener PRIVATE gtest gmock)
+target_link_libraries(tests_DscInterpreter PRIVATE gtest gmock)
 
-target_compile_definitions(tests_DscListener PRIVATE UNIT_TEST_ENABLE=1)
+target_compile_definitions(tests_DscInterpreter PRIVATE UNIT_TEST_ENABLE=1)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

@@ -1,10 +1,11 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <chrono>
 
 #include "CsvLogger.hpp"
 
-namespace udp_listener 
+namespace logger
 {
     CsvLogger::CsvLogger()
     {
@@ -12,13 +13,17 @@ namespace udp_listener
         m_myfile.open(my_file_path, std::fstream::trunc);
     }
 
-    void CsvLogger::LogMessage(int64_t timestamp, uint32_t mileage, float speed)
+    int64_t CsvLogger::getUnixTimestamp() noexcept
     {
-        m_myfile << timestamp << ", " << mileage << ", " << std::setprecision(1) << std::fixed << speed << std::endl;
+        int64_t microsecondsUTC =
+            std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        return microsecondsUTC;
     }
 
-    void CsvLogger::LogError()
+    void CsvLogger::LogMessage(uint32_t mileage, float speed)
     {
-        std::cerr << "CRC error, frame discarded \n";
+        m_myfile << getUnixTimestamp() << ", " << mileage << ", " << std::setprecision(1) << std::fixed << speed << std::endl;
     }
+
+    void CsvLogger::LogError() { std::cerr << "CRC error, frame discarded \n"; }
 }
