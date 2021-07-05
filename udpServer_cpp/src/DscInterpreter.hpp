@@ -8,7 +8,6 @@
 
 namespace interpreter
 {
-    class logger::Logger;
     class DscInterpreter: public Listener
     {
     public:

@@ -23,26 +23,12 @@ TEST(DscInterpreterTest, convertSpeedToKmh)
 TEST(DscInterpreterTest, handleIncomingBuffer)
 {
     LoggerMock mock;
-    // auto myDscListener = udp_listener::DscListener(std::make_unique<udp_listener::CsvLogger>(std::move(mock)));
+    std::array<uint8_t, 100> test_buffer = {0x02, 0x1a, 0x08, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1C};
 
-    //auto myLogger = std::make_unique<udp_listener::CsvLogger>();
-    //auto myDscListener = std::make_unique<udp_listener::DscListener>(mock);
+    auto myDscInterpreter = interpreter::DscInterpreter(std::make_unique<LoggerMock>());
 
-    // auto dep = std::make_unique<LoggerMock()>;
-
-    // EXPECT_CALL(*dep, LogError()).Times(1);
-
-    // std::array<uint8_t, 100> test_buffer = {0x02, 0x1a, 0x08, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1C};
-
-    // //EXPECT_CALL(mock, LogError()).Times(1);
-
-    // auto myDscListener = udp_listener::DscListener(std::make_unique<LoggerMock>(std::move(dep)));
-   
-    // //myDscListener.inject(std::move(dep));
-
-    // myDscListener.handleIncomingBuffer(test_buffer);
-
-    // EXPECT_CA L(1, 36);
+    EXPECT_CALL(mock, LogError()).Times(1);
+    myDscInterpreter.handleIncomingBuffer(test_buffer);
 }
 
 int main(int argc, char* argv[])
