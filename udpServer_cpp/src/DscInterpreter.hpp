@@ -9,11 +9,11 @@
 namespace interpreter
 {
     class logger::Logger;
-    class DscListener: public Listener
+    class DscInterpreter: public Listener
     {
     public:
-        DscListener(std::unique_ptr<logger::Logger> logger);
-        virtual ~DscListener() = default;
+        DscInterpreter(std::unique_ptr<logger::Logger> logger);
+        virtual ~DscInterpreter() = default;
         virtual void handleIncomingBuffer(const std::span<uint8_t> buffer);
 
     Private:

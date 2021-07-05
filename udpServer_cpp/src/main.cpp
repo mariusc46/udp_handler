@@ -4,7 +4,7 @@
 #include <exception>
 
 #include "CsvLogger.hpp"
-#include "DscListener.hpp"
+#include "DscInterpreter.hpp"
 #include "UdpListener.hpp"
 
 const std::string IP = "127.0.0.1";
@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
     try
     {
         auto myLogger = std::make_unique<logger::CsvLogger>();
-        auto myListener = std::make_unique<interpreter::DscListener>(std::move(myLogger));
+        auto myListener = std::make_unique<interpreter::DscInterpreter>(std::move(myLogger));
 
         udp_listener::UdpListener udpListenObj(IP, PORT, std::move(myListener));
         udpListenObj.receiveFrames();

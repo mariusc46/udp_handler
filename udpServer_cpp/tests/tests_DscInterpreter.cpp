@@ -2,25 +2,25 @@
 #include <gtest/gtest.h>
 
 #include "../src/CsvLogger.hpp"
-#include "../src/DscListener.hpp"
+#include "../src/DscInterpreter.hpp"
 #include "mock.hpp"
 
-TEST(DscListenerTest, isTimeToLog)
+TEST(DscInterpreterTest, isTimeToLog)
 {
-    auto myDscListener = interpreter::DscListener(std::make_unique<LoggerMock>());
-    myDscListener.m_previous_log_mileage = 0;
-    EXPECT_EQ(true, myDscListener.isTimeToLog(10));
+    auto myDscInterpreter = interpreter::DscInterpreter(std::make_unique<LoggerMock>());
+    myDscInterpreter.m_previous_log_mileage = 0;
+    EXPECT_EQ(true, myDscInterpreter.isTimeToLog(10));
 }
 
-TEST(DscListenerTest, convertSpeedToKmh)
+TEST(DscInterpreterTest, convertSpeedToKmh)
 {
-    auto myDscListener = interpreter::DscListener(std::make_unique<LoggerMock>());
+    auto myDscInterpreter = interpreter::DscInterpreter(std::make_unique<LoggerMock>());
 
-    float computedSpeedInKmh = myDscListener.convertSpeedToKmh(10);
+    float computedSpeedInKmh = myDscInterpreter.convertSpeedToKmh(10);
     EXPECT_EQ(computedSpeedInKmh, 36);
 }
 
-TEST(DscListenerTest, handleIncomingBuffer)
+TEST(DscInterpreterTest, handleIncomingBuffer)
 {
     LoggerMock mock;
     // auto myDscListener = udp_listener::DscListener(std::make_unique<udp_listener::CsvLogger>(std::move(mock)));
