@@ -1,27 +1,20 @@
-cmake_minimum_required(VERSION 3.10)
-project(udp_listener VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.13)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+project(gtest-demo LANGUAGES CXX)
 
-include(CTest)
+# set the C++ standard
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# place binaries and libraries according to GNU standards
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+
+add_subdirectory(src)
+
 enable_testing()
 
-add_subdirectory(tests/googletest)
-
-include_directories(include)
-include_directories(tests/googletest/include)
-
-set (SOURCES src/main.cpp src/MyLogger.cpp libs/Network.cpp libs/CRC.cpp src/MyListener.cpp src/MyServer.cpp)
-set (HEADERS src/Logger.hpp src/Listener.hpp src/MyLogger.hpp libs/Network.h libs/CRC.h src/MyListener.hpp src/MyServer.hpp)
-
-add_executable(udp_listener ${SOURCES} ${HEADERS})
-
-add_executable(tests_myLogger tests/test_MyLogger.cpp src/Listener.hpp src/MyLogger.cpp src/MyLogger.hpp)
-add_executable(tests_myListener tests/test_MyListener.cpp src/Logger.hpp src/Listener.hpp src/MyLogger.cpp src/MyLogger.hpp libs/Network.cpp libs/Network.h libs/CRC.cpp libs/CRC.h src/MyListener.cpp src/MyListener.hpp src/MyServer.cpp src/MyServer.hpp)
-
-target_link_libraries(tests_myLogger PRIVATE gtest gmock)
-target_link_libraries(tests_myListener PRIVATE gtest gmock)
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+add_subdirectory(tests)

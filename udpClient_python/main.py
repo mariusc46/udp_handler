@@ -3,7 +3,7 @@ import time
 
 VALID_ID = 0x21A
 INVALID_ID = 0x21C
-NUMBER_OF_CANFRAMES = 10
+NUMBER_OF_CANFRAMES = 20
 
 udp_gen = udp_class.UdpGenerator()
 udp_gen.init_socket()
