@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
     try
     {
         auto myLogger = std::make_unique<logger::CsvLogger>();
-        auto myListener = std::make_unique<udp_listener::DscListener>(std::move(myLogger));
+        auto myListener = std::make_unique<interpreter::DscListener>(std::move(myLogger));
 
         udp_listener::UdpServerClass udpServerObj(IP, PORT, std::move(myListener));
         udpServerObj.receiveFrames();

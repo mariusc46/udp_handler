@@ -6,7 +6,7 @@
 #include "Logger.hpp"
 
 
-namespace udp_listener
+namespace interpreter
 {
     constexpr uint32_t NO_MESSAGE_LOGGED = std::numeric_limits<uint32_t>::max();
 

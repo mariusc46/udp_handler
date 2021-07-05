@@ -2,7 +2,7 @@
 #include <span>
 #include <cstdint>
 
-namespace udp_listener
+namespace interpreter
 {
     class Listener
     {

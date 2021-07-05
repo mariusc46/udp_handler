@@ -7,14 +7,14 @@
 
 TEST(DscListenerTest, isTimeToLog)
 {
-    auto myDscListener = udp_listener::DscListener(std::make_unique<LoggerMock>());
+    auto myDscListener = interpreter::DscListener(std::make_unique<LoggerMock>());
     myDscListener.m_previous_log_mileage = 0;
     EXPECT_EQ(true, myDscListener.isTimeToLog(10));
 }
 
 TEST(DscListenerTest, convertSpeedToKmh)
 {
-    auto myDscListener = udp_listener::DscListener(std::make_unique<LoggerMock>());
+    auto myDscListener = interpreter::DscListener(std::make_unique<LoggerMock>());
 
     float computedSpeedInKmh = myDscListener.convertSpeedToKmh(10);
     EXPECT_EQ(computedSpeedInKmh, 36);
