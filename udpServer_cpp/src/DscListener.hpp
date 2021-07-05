@@ -1,5 +1,6 @@
 #pragma once
 #include "Listener.hpp"
+#include "Logger.hpp"
 #include "setup.hpp"
 
 #include <memory>
@@ -7,11 +8,11 @@
 
 namespace udp_listener
 {
-    class Logger;
+    class logger::Logger;
     class DscListener: public Listener
     {
     public:
-        DscListener(std::unique_ptr<Logger> logger);
+        DscListener(std::unique_ptr<logger::Logger> logger);
         virtual ~DscListener() = default;
         virtual void handleIncomingBuffer(const std::span<uint8_t> buffer);
 
@@ -25,7 +26,7 @@ namespace udp_listener
         bool validateCrc() noexcept;
 
         std::span<uint8_t> m_singleFrameBuffer;
-        std::unique_ptr<Logger> m_logger;
+        std::unique_ptr<logger::Logger> m_logger;
         uint32_t m_previous_log_mileage;
     };
 }

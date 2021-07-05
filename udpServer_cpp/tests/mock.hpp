@@ -1,7 +1,8 @@
-#include "../src/CsvLogger.hpp"
+#include "../src/Logger.hpp"
 
-class LoggerMock : public udp_listener::CsvLogger
+class LoggerMock: public logger::Logger
 {
+public:
     MOCK_METHOD(void, LogError, (), (override));
     MOCK_METHOD(void, LogMessage, (uint32_t mileage, float speed), (override));
 };

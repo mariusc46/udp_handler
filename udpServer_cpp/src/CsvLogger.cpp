@@ -5,7 +5,7 @@
 
 #include "CsvLogger.hpp"
 
-namespace udp_listener
+namespace logger
 {
     CsvLogger::CsvLogger()
     {

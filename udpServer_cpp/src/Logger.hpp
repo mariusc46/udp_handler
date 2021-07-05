@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace udp_listener
+namespace logger
 {
     class Logger
     {

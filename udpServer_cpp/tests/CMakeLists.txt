@@ -11,6 +11,10 @@ add_subdirectory(googletest)
 include_directories(include)
 include_directories(tests/googletest/include)
 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ADDITIONAL_CFLAGS} -g")
+
 add_executable(tests_CsvLogger test_CsvLogger.cpp ../src/CsvLogger.cpp ../src/CsvLogger.hpp)
 add_executable(tests_DscListener test_DscListener.cpp mock.hpp ../src/DscListener.cpp ../src/DscListener.hpp ../src/CsvLogger.cpp ../src/CsvLogger.hpp ../libs/CRC.cpp ../libs/CRC.h ../src/setup.hpp)
 

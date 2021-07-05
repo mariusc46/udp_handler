@@ -5,7 +5,7 @@
 
 TEST(CsvLoggerTest, LogError)
 {
-    udp_listener::CsvLogger logger;
+    logger::CsvLogger logger;
 
     testing::internal::CaptureStderr();
     logger.LogError();

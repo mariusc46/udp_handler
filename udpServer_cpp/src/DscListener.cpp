@@ -1,4 +1,3 @@
-#include <chrono>
 #include <limits>
 #include <bits/stdc++.h>
 
@@ -11,7 +10,7 @@ namespace udp_listener
 {
     constexpr uint32_t NO_MESSAGE_LOGGED = std::numeric_limits<uint32_t>::max();
 
-    DscListener::DscListener(std::unique_ptr<Logger> logger): m_previous_log_mileage(NO_MESSAGE_LOGGED), m_logger(std::move(logger))
+    DscListener::DscListener(std::unique_ptr<logger::Logger> logger): m_previous_log_mileage(NO_MESSAGE_LOGGED), m_logger(std::move(logger))
     {
     }
 

@@ -14,12 +14,10 @@ int main(int argc, char* argv[])
 {
     try
     {
-        using namespace udp_listener;
+        auto myLogger = std::make_unique<logger::CsvLogger>();
+        auto myListener = std::make_unique<udp_listener::DscListener>(std::move(myLogger));
 
-        auto myLogger = std::make_unique<CsvLogger>();
-        auto myListener = std::make_unique<DscListener>(std::move(myLogger));
-
-        UdpServerClass udpServerObj(IP, PORT, std::move(myListener));
+        udp_listener::UdpServerClass udpServerObj(IP, PORT, std::move(myListener));
         udpServerObj.receiveFrames();
     }
     catch (const std::exception& e)
