@@ -9,7 +9,7 @@ namespace logger
 {
     CsvLogger::CsvLogger()
     {
-        std::string my_file_path = "../../output/log.csv";
+        std::string my_file_path = "log.csv";
         m_myfile.open(my_file_path, std::fstream::trunc);
     }
 
