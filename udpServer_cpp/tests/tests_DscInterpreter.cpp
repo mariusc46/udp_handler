@@ -20,17 +20,6 @@ TEST(DscInterpreterTest, convertSpeedToKmh)
     EXPECT_EQ(computedSpeedInKmh, 36);
 }
 
-TEST(DscInterpreterTest, handleIncomingBuffer)
-{
-    LoggerMock mock;
-    std::array<uint8_t, 100> test_buffer = {0x02, 0x1a, 0x08, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1C};
-
-    auto myDscInterpreter = interpreter::DscInterpreter(std::make_unique<LoggerMock>());
-
-    EXPECT_CALL(mock, LogError()).Times(1);
-    myDscInterpreter.handleIncomingBuffer(test_buffer);
-}
-
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
