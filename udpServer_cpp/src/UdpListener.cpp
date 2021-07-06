@@ -14,13 +14,13 @@ namespace udp_listener
 
             if (numberOfreceivedBytes > 0U)
             {
-                m_listener->handleIncomingBuffer(std::span<uint8_t>(buffer.data(), numberOfreceivedBytes));
+                m_interpreter->handleIncomingBuffer(std::span<uint8_t>(buffer.data(), numberOfreceivedBytes));
             }
         }
     }
 
-    UdpListener::UdpListener(const std::string &ip, const uint16_t port, std::unique_ptr<interpreter::Interpreter> listener):
-        m_udpServer(std::make_unique<udp_client_server::udp_server>(ip, port)), m_listener(std::move(listener))
+    UdpListener::UdpListener(const std::string &ip, const uint16_t port, std::unique_ptr<interpreter::Interpreter> interpreter):
+        m_udpServer(std::make_unique<udp_client_server::udp_server>(ip, port)), m_interpreter(std::move(interpreter))
     {
     }
 }

@@ -11,11 +11,11 @@ namespace udp_listener
     class UdpListener
     {
     public:
-        UdpListener(const std::string& ip, const uint16_t port, std::unique_ptr<interpreter::Interpreter> listener);
+        UdpListener(const std::string& ip, const uint16_t port, std::unique_ptr<interpreter::Interpreter> interpreter);
         void receiveFrames();
 
     private:
         std::unique_ptr<udp_client_server::udp_server> m_udpServer;
-        std::unique_ptr<interpreter::Interpreter> m_listener;
+        std::unique_ptr<interpreter::Interpreter> m_interpreter;
     };
 }
