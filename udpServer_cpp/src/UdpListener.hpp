@@ -1,21 +1,21 @@
 #pragma once
 #include "../libs/Network.h"
-#include "Listener.hpp"
+#include "Interpreter.hpp"
 
 #include <memory>
 
 namespace udp_listener
 {
-    class Listener;
+    class Interpreter;
 
     class UdpListener
     {
     public:
-        UdpListener(const std::string& ip, const uint16_t port, std::unique_ptr<interpreter::Listener> listener);
+        UdpListener(const std::string& ip, const uint16_t port, std::unique_ptr<interpreter::Interpreter> listener);
         void receiveFrames();
 
     private:
         std::unique_ptr<udp_client_server::udp_server> m_udpServer;
-        std::unique_ptr<interpreter::Listener> m_listener;
+        std::unique_ptr<interpreter::Interpreter> m_listener;
     };
 }

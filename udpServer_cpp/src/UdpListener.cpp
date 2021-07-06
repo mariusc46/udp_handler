@@ -1,4 +1,4 @@
-#include "Listener.hpp"
+#include "Interpreter.hpp"
 #include "UdpListener.hpp"
 #include <array>
 
@@ -19,7 +19,7 @@ namespace udp_listener
         }
     }
 
-    UdpListener::UdpListener(const std::string &ip, const uint16_t port, std::unique_ptr<interpreter::Listener> listener):
+    UdpListener::UdpListener(const std::string &ip, const uint16_t port, std::unique_ptr<interpreter::Interpreter> listener):
         m_udpServer(std::make_unique<udp_client_server::udp_server>(ip, port)), m_listener(std::move(listener))
     {
     }

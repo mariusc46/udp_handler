@@ -1,5 +1,5 @@
 #pragma once
-#include "Listener.hpp"
+#include "Interpreter.hpp"
 #include "Logger.hpp"
 #include "setup.hpp"
 
@@ -8,7 +8,7 @@
 
 namespace interpreter
 {
-    class DscInterpreter: public Listener
+    class DscInterpreter: public Interpreter
     {
     public:
         DscInterpreter(std::unique_ptr<logger::Logger> logger);
